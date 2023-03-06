@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useState } from "react";
-import styles from "./index.module.css";
+import styles from "./index.module.scss";
 
 export default function Home() {
   const [animalInput, setAnimalInput] = useState("");
@@ -34,7 +34,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>OpenAI Quickstart</title>
+        <title>Ai Comments</title>
         <link rel="icon" href="/dog.png" />
       </Head>
 
