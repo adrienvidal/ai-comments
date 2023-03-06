@@ -15,6 +15,8 @@ export default async function (req, res) {
     return;
   }
 
+  const animal = req.body.animal || '';
+
   try {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",

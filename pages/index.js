@@ -1,33 +1,41 @@
-import Head from "next/head";
-import { useState } from "react";
-import styles from "./index.module.scss";
+import Head from 'next/head'
+import { useState } from 'react'
+import styles from './index.module.scss'
+
+// components
+import Left from '../components/left/Left'
+import Right from '../components/right/Right'
 
 export default function Home() {
-  const [animalInput, setAnimalInput] = useState("");
-  const [result, setResult] = useState();
+  const [animalInput, setAnimalInput] = useState('')
+  const [result, setResult] = useState()
 
   async function onSubmit(event) {
-    event.preventDefault();
+    event.preventDefault()
+
     try {
-      const response = await fetch("/api/generate", {
-        method: "POST",
+      const response = await fetch('/api/generate', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ animal: animalInput }),
-      });
+      })
 
-      const data = await response.json();
+      const data = await response.json()
       if (response.status !== 200) {
-        throw data.error || new Error(`Request failed with status ${response.status}`);
+        throw (
+          data.error ||
+          new Error(`Request failed with status ${response.status}`)
+        )
       }
 
-      setResult(data.result);
-      setAnimalInput("");
-    } catch(error) {
+      setResult(data.result)
+      setAnimalInput('')
+    } catch (error) {
       // Consider implementing your own error handling logic here
-      console.error(error);
-      alert(error.message);
+      console.error(error)
+      alert(error.message)
     }
   }
 
@@ -40,18 +48,12 @@ export default function Home() {
 
       <main className={styles.main}>
         <h3>Generate Comments</h3>
-        <form onSubmit={onSubmit}>
-          <input
-            type="text"
-            name="animal"
-            placeholder="Subject"
-            value={animalInput}
-            onChange={(e) => setAnimalInput(e.target.value)}
-          />
-          <input type="submit" value="Generate names" />
-        </form>
-        <div className={styles.result}>{result}</div>
+
+        <div className={styles.wrapper}>
+          <Left onSubmit={onSubmit} animalInput={animalInput} setAnimalInput={setAnimalInput}/>
+          <Right result={result} />
+        </div>
       </main>
     </div>
-  );
+  )
 }
