@@ -47,20 +47,18 @@ export default function Home() {
         <title>Ai Comments</title>
         <link rel="icon" href="/dog.png" />
       </Head>
-      <body className="popo">
-        <main className={styles.main}>
-          <h3>Generate Comments</h3>
+      <main className={styles.main}>
+        <h3>Generate Comments</h3>
 
-          <div className={styles.wrapper}>
-            <Left
-              onSubmit={onSubmit}
-              questionInput={questionInput}
-              setQuestionInput={setQuestionInput}
-            />
-            <Right result={result} />
-          </div>
-        </main>
-      </body>
+        <div className={styles.wrapper}>
+          <Left
+            onSubmit={onSubmit}
+            questionInput={questionInput}
+            setQuestionInput={setQuestionInput}
+          />
+          <Right result={result} />
+        </div>
+      </main>
     </div>
   )
 }
