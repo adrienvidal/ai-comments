@@ -23,6 +23,7 @@ $outline-color_1: #10a37f;
   font-style: normal;
 }
 
+
 .main {
   font-size: 16px;
   line-height: 24px;
@@ -50,17 +51,16 @@ $outline-color_1: #10a37f;
   }
 
   .wrapper {
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
     grid-gap: 10px;
-    align-items: center;
-    justify-items: center;
-  }
+    padding: 20px;
 
-  form {
-    display: flex;
-    flex-direction: column;
-    width: 320px;
+    @media screen and (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+      justify-items: center;
+    }
   }
 
   input[type='text'] {

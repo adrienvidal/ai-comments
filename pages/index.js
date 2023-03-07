@@ -7,11 +7,13 @@ import Left from '../components/left/Left'
 import Right from '../components/right/Right'
 
 export default function Home() {
-  const [animalInput, setAnimalInput] = useState('')
+  const [questionInput, setQuestionInput] = useState('')
   const [result, setResult] = useState()
 
   async function onSubmit(event) {
     event.preventDefault()
+
+    setResult('Loading...')
 
     try {
       const response = await fetch('/api/generate', {
@@ -19,7 +21,7 @@ export default function Home() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ animal: animalInput }),
+        body: JSON.stringify({ myQuestion: questionInput }),
       })
 
       const data = await response.json()
@@ -31,7 +33,7 @@ export default function Home() {
       }
 
       setResult(data.result)
-      setAnimalInput('')
+      setQuestionInput('')
     } catch (error) {
       // Consider implementing your own error handling logic here
       console.error(error)
@@ -45,15 +47,20 @@ export default function Home() {
         <title>Ai Comments</title>
         <link rel="icon" href="/dog.png" />
       </Head>
+      <body className="popo">
+        <main className={styles.main}>
+          <h3>Generate Comments</h3>
 
-      <main className={styles.main}>
-        <h3>Generate Comments</h3>
-
-        <div className={styles.wrapper}>
-          <Left onSubmit={onSubmit} animalInput={animalInput} setAnimalInput={setAnimalInput}/>
-          <Right result={result} />
-        </div>
-      </main>
+          <div className={styles.wrapper}>
+            <Left
+              onSubmit={onSubmit}
+              questionInput={questionInput}
+              setQuestionInput={setQuestionInput}
+            />
+            <Right result={result} />
+          </div>
+        </main>
+      </body>
     </div>
   )
 }
