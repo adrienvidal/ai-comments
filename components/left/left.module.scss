@@ -1,8 +1,19 @@
 .left {
   width: 100%;
+  
+  @media screen and (min-width: 768px) {
+    width: 500px;
+  }
 
   form {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
+
+    input {
+      margin-top: 10px;
+    }
+    
   }
 }
