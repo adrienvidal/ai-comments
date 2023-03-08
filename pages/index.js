@@ -6,13 +6,24 @@ import styles from './index.module.scss'
 import Left from '../components/left/Left'
 import Right from '../components/right/Right'
 
+// Write 1500 words review of casinowhizz.com with 10 paragraph of 150 words each
+
+function getWordCount(str) {
+  return str.split(' ').filter(function (n) {
+    return n != ''
+  }).length
+}
+
 export default function Home() {
-  const [questionInput, setQuestionInput] = useState('')
+  const [wordsCount, setWordsCount] = useState('')
+  const [subject, setSubject] = useState('')
   const [result, setResult] = useState()
+  const [totalWords, setTotalWords] = useState(0)
 
   async function onSubmit(event) {
     event.preventDefault()
 
+    setTotalWords(0)
     setResult('Loading...')
 
     try {
@@ -21,7 +32,7 @@ export default function Home() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ myQuestion: questionInput }),
+        body: JSON.stringify({ wordsCount: wordsCount, subject: subject }),
       })
 
       const data = await response.json()
@@ -32,8 +43,9 @@ export default function Home() {
         )
       }
 
+      setTotalWords(getWordCount(data.result))
       setResult(data.result)
-      setQuestionInput('')
+      setSubject('')
     } catch (error) {
       // Consider implementing your own error handling logic here
       console.error(error)
@@ -53,10 +65,12 @@ export default function Home() {
         <div className={styles.wrapper}>
           <Left
             onSubmit={onSubmit}
-            questionInput={questionInput}
-            setQuestionInput={setQuestionInput}
+            wordsCount={wordsCount}
+            setWordsCount={setWordsCount}
+            subject={subject}
+            setSubject={setSubject}
           />
-          <Right result={result} />
+          <Right result={result} totalWords={totalWords} />
         </div>
       </main>
     </div>
