@@ -24,8 +24,11 @@ export default async function (req, res) {
       // model: 'code-davinci-002',
       model: 'text-davinci-003',
       prompt: generatePrompt(wordsCount, subject),
-      temperature: 1,
+      temperature: 0.5,
       max_tokens: 4000,
+      top_p: 1.0,
+      frequency_penalty: 0.0,
+      presence_penalty: 0.0,
     })
     res.status(200).json({ result: completion.data.choices[0].text })
   } catch (error) {
@@ -50,4 +53,5 @@ function generatePrompt(wordsCount, subject) {
   // return `Write 300 names for restaurants`
   // return `Write 1500 words review for a fancy restaurant`
   // return `Write 10 reviews of 150 words for a fancy restaurant`
+  // return "Write a 1500 words restaurant review based on these notes:\n\nName: The Blue Wharf\nLobster great, noisy, service polite, prices good.\n\nReview:"
 }
