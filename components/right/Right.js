@@ -1,9 +1,10 @@
 import React from 'react'
 import styles from './right.module.scss'
 
-export default function Right({ result }) {
+export default function Right({ result, totalWords }) {
   return (
     <section className={styles.right}>
+      <div className={styles.totalWords}>Total Words: {totalWords}</div>
       <div className={styles.result}>{result}</div>
     </section>
   )

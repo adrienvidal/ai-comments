@@ -1,6 +1,8 @@
+@import '../../assets/vars.scss';
+
 .left {
   width: 100%;
-  
+
   @media screen and (min-width: 768px) {
     width: 500px;
   }
@@ -11,9 +13,30 @@
     width: 100%;
     margin-bottom: 20px;
 
-    input {
+    input[type='text'], input[type='number'] {
+      padding: 12px 16px;
+      border: 1px solid #10a37f;
+      border-radius: 4px;
+      outline-color: $outline-color_1;
+    }
+  
+    &::placeholder {
+      color: $color_3;
+      opacity: 1;
+    }
+  
+    input[type='submit'] {
+      padding: 12px 0;
+      color: $color_4;
+      background-color: $background-color_1;
+      border: none;
+      border-radius: 4px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    input[type='submit'] {
       margin-top: 10px;
     }
-    
   }
 }

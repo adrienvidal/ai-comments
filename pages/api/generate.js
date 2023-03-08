@@ -16,13 +16,14 @@ export default async function (req, res) {
     return
   }
 
-  const myQuestion = req.body.myQuestion || ''
+  const wordsCount = req.body.wordsCount || ''
+  const subject = req.body.subject || ''
 
   try {
     const completion = await openai.createCompletion({
       // model: 'code-davinci-002',
       model: 'text-davinci-003',
-      prompt: generatePrompt(myQuestion),
+      prompt: generatePrompt(wordsCount, subject),
       temperature: 1,
       max_tokens: 4000,
     })
@@ -43,8 +44,9 @@ export default async function (req, res) {
   }
 }
 
-function generatePrompt(myQuestion) {
-  return `${myQuestion}`
+function generatePrompt(wordsCount, subject) {
+  return `Write ${wordsCount} words review for a ${subject}`
+  // return `${subject}`
   // return `Write 300 names for restaurants`
   // return `Write 1500 words review for a fancy restaurant`
   // return `Write 10 reviews of 150 words for a fancy restaurant`
