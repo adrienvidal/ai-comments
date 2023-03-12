@@ -60,7 +60,7 @@ export default function Home() {
         <link rel="icon" href="/dog.png" />
       </Head>
       <main className={styles.main}>
-        <h3>Generate Comments !</h3>
+        <h3>Generate Comments !!</h3>
 
         <div className={styles.wrapper}>
           <Left
