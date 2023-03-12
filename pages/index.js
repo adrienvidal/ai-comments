@@ -17,14 +17,14 @@ function getWordCount(str) {
 export default function Home() {
   const [wordsCount, setWordsCount] = useState('')
   const [subject, setSubject] = useState('')
-  const [result, setResult] = useState()
+  const [result, setResult] = useState([])
   const [totalWords, setTotalWords] = useState(0)
+  const [isLoading, setIsLoading] = useState(false)
 
   async function onSubmit(event) {
     event.preventDefault()
 
-    setTotalWords(0)
-    setResult('Loading...')
+    setIsLoading(true)
 
     try {
       const response = await fetch('/api/generate', {
@@ -32,7 +32,11 @@ export default function Home() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ wordsCount: wordsCount, subject: subject }),
+        body: JSON.stringify({
+          wordsCount: wordsCount,
+          subject: subject,
+          previousResult: result,
+        }),
       })
 
       const data = await response.json()
@@ -43,9 +47,9 @@ export default function Home() {
         )
       }
 
-      setTotalWords(getWordCount(data.result))
-      setResult(data.result)
-      setSubject('')
+      setIsLoading(false)
+      setResult([...result, data.result])
+      setTotalWords(getWordCount([...result, data.result].join(' ')))
     } catch (error) {
       // Consider implementing your own error handling logic here
       console.error(error)
@@ -69,6 +73,9 @@ export default function Home() {
             setWordsCount={setWordsCount}
             subject={subject}
             setSubject={setSubject}
+            isLoading={isLoading}
+            isPreviousResult={result.length}
+            setResult={setResult}
           />
           <Right result={result} totalWords={totalWords} />
         </div>

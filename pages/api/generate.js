@@ -18,17 +18,17 @@ export default async function (req, res) {
 
   const wordsCount = req.body.wordsCount || ''
   const subject = req.body.subject || ''
+  const previousResult = req.body.previousResult || ''
 
   try {
     const completion = await openai.createCompletion({
-      // model: 'code-davinci-002',
       model: 'text-davinci-003',
-      prompt: generatePrompt(wordsCount, subject),
-      temperature: 0.5,
-      max_tokens: 4000,
-      top_p: 1.0,
-      frequency_penalty: 0.0,
-      presence_penalty: 0.0,
+      prompt: generatePrompt(wordsCount, subject, previousResult),
+      temperature: 0.7,
+      top_p: 1,
+      max_tokens: 500,
+      // stream: true,
+      n: 1,
     })
     res.status(200).json({ result: completion.data.choices[0].text })
   } catch (error) {
@@ -47,8 +47,30 @@ export default async function (req, res) {
   }
 }
 
-function generatePrompt(wordsCount, subject) {
-  return `Write ${wordsCount} words review for a ${subject}`
+// Write a 1500-word essay on climate change
+// Continue after your last sentence with 1500-word
+
+/* `
+Subject: Restaurent
+Words: 150
+
+Write 10 paragraphs with the informations above about a restaurent one by one
+` */
+
+function generatePrompt(wordsCount, subject, previousResult) {
+  const firstPrompt = `
+  Can you write a ${wordsCount}-word review about a ${subject}
+  `
+
+  const promptIfPreviousPrompt = `
+  Last prompt: "${previousResult.join(' ')}".
+  Continue a ${wordsCount}-word review after the Last prompt
+  `
+
+  return previousResult.length ? promptIfPreviousPrompt : firstPrompt
+  // return `Can you write a 1500-word review about a restaurent`
+  // return `Write ${wordsCount} words review for a ${subject}`
+  // Write a 1500-word essay on climate change
   // return `${subject}`
   // return `Write 300 names for restaurants`
   // return `Write 1500 words review for a fancy restaurant`

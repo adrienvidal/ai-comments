@@ -13,19 +13,21 @@
     width: 100%;
     margin-bottom: 20px;
 
-    input[type='text'], input[type='number'] {
+    input[type='text'],
+    input[type='number'] {
       padding: 12px 16px;
       border: 1px solid #10a37f;
       border-radius: 4px;
       outline-color: $outline-color_1;
     }
-  
+
     &::placeholder {
       color: $color_3;
       opacity: 1;
     }
-  
-    input[type='submit'] {
+
+    input[type='submit'],
+    button {
       padding: 12px 0;
       color: $color_4;
       background-color: $background-color_1;
@@ -36,7 +38,17 @@
     }
 
     input[type='submit'] {
-      margin-top: 10px;
+      margin: 10px 0;
+    }
+
+    input[data-loading='true'] {
+      background-color: lightgray;
+      pointer-events: none;
+    }
+
+    button {
+      font-size: 16px;
+      background-color: $color_2;
     }
   }
 }
