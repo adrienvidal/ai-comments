@@ -63,8 +63,10 @@ function generatePrompt(wordsCount, subject, previousResult) {
   `
 
   const promptIfPreviousPrompt = `
-  Last prompt: "${previousResult.join(' ')}".
-  Continue a ${wordsCount}-word review after the Last prompt
+  Remember my last question: "${firstPrompt}".
+  Remember your last answer: "${previousResult.join(' ')}".
+  Continue after the last sentence of your last answer.
+  Avoid identicals sentences.
   `
 
   return previousResult.length ? promptIfPreviousPrompt : firstPrompt

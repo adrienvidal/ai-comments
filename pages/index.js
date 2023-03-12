@@ -15,8 +15,8 @@ function getWordCount(str) {
 }
 
 export default function Home() {
-  const [wordsCount, setWordsCount] = useState('')
-  const [subject, setSubject] = useState('')
+  const [wordsCount, setWordsCount] = useState('1500')
+  const [subject, setSubject] = useState('Casinowhizz.com')
   const [result, setResult] = useState([])
   const [totalWords, setTotalWords] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
