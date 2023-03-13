@@ -4,22 +4,6 @@ It uses the [Next.js](https://nextjs.org/) framework with [React](https://reactj
 
 Node: v18.15.0
 
-## Workflow
-
-### Dev
-
-From origin/main
-```bash
-git checkout -b [nomdetabranch]
-```
-
-### Deploy
-
-Auto deploy on heroku on branch: origin/release
-
-URL: https://ai-comments.herokuapp.com/
-
-
 ## Installation
 
 Clone this repo and npm install.
@@ -43,3 +27,18 @@ You can view the development server at `localhost:5173`.
 ```bash
 npm run build
 ```
+
+## Workflow
+
+### Dev
+
+From origin/main
+```bash
+git checkout -b [nomdetabranch]
+```
+
+### Deploy
+
+Auto deploy on heroku on branch: origin/release
+
+URL: https://ai-comments.herokuapp.com/
