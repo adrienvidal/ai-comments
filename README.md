@@ -2,9 +2,23 @@
 
 It uses the [Next.js](https://nextjs.org/) framework with [React](https://reactjs.org/)
 
-Deploy: https://ai-comments.herokuapp.com/
-
 Node: v18.15.0
+
+## Workflow
+
+### Dev
+
+From origin/main
+```bash
+git checkout -b [nomdetabranch]
+```
+
+### Deploy
+
+Auto deploy on heroku with branch: release
+
+URL: https://ai-comments.herokuapp.com/
+
 
 ## Installation
 
