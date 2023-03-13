@@ -2,7 +2,7 @@
 
 It uses the [Next.js](https://nextjs.org/) framework with [React](https://reactjs.org/)
 
-Deploy: https://chanel-test.netlify.app/
+Deploy: https://ai-comments.herokuapp.com/
 
 Node: v18.15.0
 
