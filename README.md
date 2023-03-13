@@ -15,7 +15,7 @@ git checkout -b [nomdetabranch]
 
 ### Deploy
 
-Auto deploy on heroku with branch: release
+Auto deploy on heroku on branch: origin/release
 
 URL: https://ai-comments.herokuapp.com/
 
